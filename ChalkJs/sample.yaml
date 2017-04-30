@@ -1,0 +1,14 @@
+#Scalars
+age:23
+name:'abc'
+height:5.11
+working:Yes
+#Sequences
+-blue
+-red
+-green
+#Mappings
+theme : colors
+-blue
+-yellow
+-cyan

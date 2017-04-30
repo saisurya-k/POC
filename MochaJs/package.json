@@ -1,0 +1,19 @@
+{
+    "name": "mochatuts",
+    "version": "1.0.0",
+    "description": "learning mochajs",
+    "main": "index.js",
+    "scripts": {
+        "test": "istanbul cover _mocha -- -R test"
+    },
+    "keywords": [
+        "mochajs"
+    ],
+    "author": "saisuryak",
+    "license": "ISC",
+    "devDependencies": {
+        "istanbul": "^0.4.5",
+        "mocha": "^3.2.0",
+        "nyc": "^10.0.0"
+    }
+}

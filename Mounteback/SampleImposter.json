@@ -1,0 +1,17 @@
+{
+    "port": 4546,
+    "protocol:"
+    http ",
+    "stubs": [{
+        "responses": [
+            "is": {
+                "statusCode": 200,
+                "headers": {
+"Location":"http://localhost:4546/bike/123",
+"Content-Type":"application/json"
+                }
+            }
+        ]
+    }]
+}
+}

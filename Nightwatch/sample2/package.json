@@ -1,0 +1,15 @@
+{
+    "name": "nightwatchwithnpm",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "node nightwatch.conf.js && nightwatch"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "nightwatch": "^0.9.12",
+        "selenium-download": "^2.0.9"
+    }
+}
