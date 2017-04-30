@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="lodash.js"></script>
+    <script src="platform.js"></script>
+    <script src="benchmark.js"></script>
+    <script src="lazy.js"></script>
+    <script>
+        const persons = [];
+
+        for (var i = 202; i > 0; i--) {
+            persons.push({
+                name: `abc${i}`,
+                id: i,
+                profession: `xyz`
+            });
+        }
+
+
+        var suite = new Benchmark.Suite;
+
+        // add tests
+        suite
+            .add('for:decrementing', function () {
+                const employees = [];
+                for (var i = persons.size; i > 0; i--) {
+                    const person = persons[i];
+                    if (person.id % 2 == 0) {
+                        employees.push({
+                            name: person.name,
+                            profession: person.profession
+                        });
+                    }
+                };
+            })
+            .add('for:functional', function () {
+                const employees = persons.filter((person) => person.id % 2 == 0).map((person) => {
+                    return {
+                        name: person.name,
+                        profession: person.profession
+                    };
+                });
+            })
+            .add('Lodash:Mimic', function () {
+                const employees1 = [];
+                const employees2 = [];
+                for (var i = persons.size; i > 0; i--) {
+                    const person = persons[i];
+                    if (person.id % 2 == 0) {
+                        employees1.push(person);
+                    }
+                };
+                for (var j = employees1.size; j > 0; j--) {
+                    const p = employees1[j];
+                    employees2.push({
+                        name: p.name,
+                        profession: p.profession
+                    });
+                }
+
+            })
+            .add('Lodash', function () {
+                const employees = _.chain(persons).filter(person => person.id % 2 == 0).map(person => {
+                    return {
+                        name: person.name,
+                        profession: person.profession
+                    };
+                }).value();
+            })
+            // add listeners
+            .on('cycle', function (event) {
+                console.log(String(event.target));
+            })
+            .on('complete', function () {
+                console.log('Fastest is ' + this.filter('fastest').map('name'));
+            })
+            // run async
+            .run({
+                'async': true
+            });
+    </script>
+</body>
+
+</html>
